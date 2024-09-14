@@ -1,0 +1,224 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- bulma css template -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <!-- ionicons -->
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+  <!-- mesh viewer -->
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"></script>
+  <title>
+    EdgeRunner
+  </title>
+  <link rel="icon" href="icon.ico">
+</head>
+<body>
+  <section class="section">
+
+  <div class="container has-text-centered">
+    <!-- paper title -->
+    <p class="title is-3"> EdgeRunner: Auto-regressive Encoder for Efficient Mesh Generation </p>
+    
+    <!-- authors -->
+    <p class="title is-5 mt-2"> 
+      Authors Anonymized
+    </p>
+   
+  </div>
+
+  <!-- main container -->
+  <div class="container is-max-desktop has-text-centered">
+
+    <!-- abstract -->
+    <p class="title is-3 mt-5 has-text-centered"> Abstract </p>
+    <p class="content is-size-6 has-text-left">
+      We propose an Auto-regressive Encoder (ArE) model that compresses triangular meshes with variable number of face into a fixed-length latent space.
+      We start from introducing a novel mesh tokenizer to compress the mesh losslessly and reduce long-range dependency between tokens, which facilitates later training of the auto-regressive model.
+      Our method is able to generate meshes with number of faces up to 4000, and also supports coarse-grained controlling of the targeted number of face.
+      Further, we demonstrate that diffusion models can be trained on this latent space conditioned on other input modalities, such as single-view images to allow image-to-mesh generation.
+      Extensive experiments demonstrate the performance of our methods in terms of generation quality, diversity, and also generalization capability for point-cloud or single-view image conditioned mesh generation.
+    </p>
+
+    <p class="title is-5 mt-2"> Pipeline</p>
+    <img src="images/pipe.jpg" style="width: 100%; height: auto;">
+    
+    <!-- results -->
+
+    <p class="title is-3 mt-5 has-text-centered"> Mesh Tokenizer </p>
+    <p class="content is-size-6 has-text-left"> 
+      Our tokenizer use a modified <b>EdgeBreaker</b> algorithm to traverse and sequentialize a triangular mesh. 
+      Triangle color denotes different face types: <span style="color:red;"> L (visit left) </span>, <span style="color:green;"> R (visit right) </span>, <span style="color:blue;"> E (end of sequence) </span> 
+    </p>
+    <div class="columns is-multiline is-mobile">
+      <div class="column" style="padding: 0">
+        <video autoplay muted loop style="width: 100%; aspect-ratio: 1/1"> <source src="videos/tok/annulus.mp4" type="video/mp4"> </video>
+      </div>
+      <div class="column" style="padding: 0">
+        <video autoplay muted loop style="width: 100%; aspect-ratio: 1/1"> <source src="videos/tok/dice.mp4" type="video/mp4"> </video>
+      </div>
+      <div class="column" style="padding: 0">
+        <video autoplay muted loop style="width: 100%; aspect-ratio: 1/1"> <source src="videos/tok/rabbit.mp4" type="video/mp4"> </video>
+      </div>
+      <div class="column" style="padding: 0">
+        <video autoplay muted loop style="width: 100%; aspect-ratio: 1/1"> <source src="videos/tok/rocket.mp4" type="video/mp4"> </video>
+      </div>
+    </div>
+
+    <p class="content is-size-6 has-text-left"> 
+      We can de-tokenize our <b>generated</b> mesh token sequences to triangular meshes. 
+      Here are some visualization of the generation progress:
+    </p>
+
+    <div class="columns is-multiline is-mobile">
+      <div class="column" style="padding: 0">
+        <video autoplay muted loop style="width: 100%; aspect-ratio: 1/1"> <source src="videos/dec/heart.mp4" type="video/mp4"> </video>
+      </div>
+      <div class="column" style="padding: 0">
+        <video autoplay muted loop style="width: 100%; aspect-ratio: 1/1"> <source src="videos/dec/wheel.mp4" type="video/mp4"> </video>
+      </div>
+      <div class="column" style="padding: 0">
+        <video autoplay muted loop style="width: 100%; aspect-ratio: 1/1"> <source src="videos/dec/shield.mp4" type="video/mp4"> </video>
+      </div>
+      <div class="column" style="padding: 0">
+        <video autoplay muted loop style="width: 100%; aspect-ratio: 1/1"> <source src="videos/dec/tree.mp4" type="video/mp4"> </video>
+      </div>
+    </div>
+    <div class="columns is-multiline is-mobile">
+      <div class="column" style="padding: 0">
+        <video autoplay muted loop style="width: 100%; aspect-ratio: 1/1"> <source src="videos/dec/stoneface.mp4" type="video/mp4"> </video>
+      </div>
+      <div class="column" style="padding: 0">
+        <video autoplay muted loop style="width: 100%; aspect-ratio: 1/1"> <source src="videos/dec/dog.mp4" type="video/mp4"> </video>
+      </div>
+      <div class="column" style="padding: 0">
+        <video autoplay muted loop style="width: 100%; aspect-ratio: 1/1"> <source src="videos/dec/fedora.mp4" type="video/mp4"> </video>
+      </div>
+      <div class="column" style="padding: 0">
+        <video autoplay muted loop style="width: 100%; aspect-ratio: 1/1"> <source src="videos/dec/cactus.mp4" type="video/mp4"> </video>
+      </div>
+    </div>
+    <!-- <div class="columns is-multiline is-mobile">
+      <div class="column" style="padding: 0">
+        <video autoplay muted loop style="width: 100%; aspect-ratio: 1/1"> <source src="videos/dec/turtle.mp4" type="video/mp4"> </video>
+      </div>
+      <div class="column" style="padding: 0">
+        <video autoplay muted loop style="width: 100%; aspect-ratio: 1/1"> <source src="videos/dec/snail.mp4" type="video/mp4"> </video>
+      </div>
+    </div> -->
+
+    <p class="title is-3 mt-5 has-text-centered"> PointCloud Conditioned Mesh Generation </p>
+    <p class="content is-size-6 has-text-centered"> Drag with left mouse button to move the camera, right mouse button to move the object. </p>
+
+    <div class="columns is-multiline is-mobile">
+      
+      <div class="column" style="padding: 0">
+        <iframe src="viewer.html?file=meshes/point_cond/turtle_pc.obj&point=true" scrolling="no" style="width: 100%; aspect-ratio: 1/1"> </iframe>
+        <a class="button is-light" href="meshes/point_cond/turtle_pc.obj"> Download Input </a>
+      </div>
+      <div class="column" style="padding: 0">
+        <iframe src="viewer.html?file=meshes/point_cond/turtle.ply&wire=true" scrolling="no" style="width: 100%; aspect-ratio: 1/1"> </iframe>
+        <a class="button is-light" href="meshes/point_cond/turtle.ply"> Download Output </a>
+      </div>
+      <div class="column" style="padding: 0">
+        <iframe src="viewer.html?file=meshes/point_cond/tposegirl_pc.obj&point=true" scrolling="no" style="width: 100%; aspect-ratio: 1/1"> </iframe>
+        <a class="button is-light" href="meshes/point_cond/tposegirl_pc.obj"> Download Input </a>
+      </div>
+      <div class="column" style="padding: 0">
+        <iframe src="viewer.html?file=meshes/point_cond/tposegirl.ply&wire=true" scrolling="no" style="width: 100%; aspect-ratio: 1/1"> </iframe>
+        <a class="button is-light" href="meshes/point_cond/tposegirl.ply"> Download Output </a>
+      </div>
+    </div>
+    <div class="columns is-multiline is-mobile">
+      <div class="column" style="padding: 0">
+        <iframe src="viewer.html?file=meshes/point_cond/aztec_sculpture_high_definition_detailed_super_realistic_stylized_bust_draft_pc.obj&point=true" scrolling="no" style="width: 100%; aspect-ratio: 1/1"> </iframe>
+        <a class="button is-light" href="meshes/point_cond/aztec_sculpture_high_definition_detailed_super_realistic_stylized_bust_draft_pc.obj"> Download Input </a>
+      </div>
+      <div class="column" style="padding: 0">
+        <iframe src="viewer.html?file=meshes/point_cond/aztec_sculpture_high_definition_detailed_super_realistic_stylized_bust_draft.ply&wire=true" scrolling="no" style="width: 100%; aspect-ratio: 1/1"> </iframe>
+        <a class="button is-light" href="meshes/point_cond/aztec_sculpture_high_definition_detailed_super_realistic_stylized_bust_draft.ply"> Download Output </a>
+      </div>
+      <div class="column" style="padding: 0">
+        <iframe src="../viewer.html?file=meshes/point_cond/hat_pc.obj&point=true" scrolling="no" style="width: 100%; aspect-ratio: 1/1"> </iframe>
+        <a class="button is-light" href="meshes/point_cond/hat_pc.obj"> Download Input </a>
+      </div>
+      <div class="column" style="padding: 0">
+        <iframe src="../viewer.html?file=meshes/point_cond/hat.ply&wire=true" scrolling="no" style="width: 100%; aspect-ratio: 1/1"> </iframe>
+        <a class="button is-light" href="meshes/point_cond/hat.ply"> Download Output </a>
+      </div>
+    </div>
+    
+    <p class="title is-5 mt-5 has-text-centered"> More Results </p>
+    <div class="columns is-multiline is-mobile">
+      <div class="column"> <a class="button is-fullwidth is-info" target="_blank" href="gallery/point_cond_1.html"> 1 </a> </div>
+      <div class="column"> <a class="button is-fullwidth is-info" target="_blank" href="gallery/point_cond_2.html"> 2 </a> </div>
+      <div class="column"> <a class="button is-fullwidth is-info" target="_blank" href="gallery/point_cond_3.html"> 3 </a> </div>
+      <div class="column"> <a class="button is-fullwidth is-info" target="_blank" href="gallery/point_cond_4.html"> 4 </a> </div>
+      <div class="column"> <a class="button is-fullwidth is-info" target="_blank" href="gallery/point_cond_5.html"> 5 </a> </div>
+      <div class="column"> <a class="button is-fullwidth is-info" target="_blank" href="gallery/point_cond_6.html"> 6 </a> </div>
+      <div class="column"> <a class="button is-fullwidth is-info" target="_blank" href="gallery/point_cond_7.html"> 7 </a> </div>
+      <div class="column"> <a class="button is-fullwidth is-info" target="_blank" href="gallery/point_cond_8.html"> 8 </a> </div>
+    </div>
+    
+    <p class="title is-3 mt-5 has-text-centered"> Image Conditioned Mesh Generation </p>
+
+    <div class="columns is-multiline is-mobile">
+      <div class="column" style="padding: 0">
+        <img src="meshes/image_cond/barrel.jpg" style="width: 100%; aspect-ratio: 1/1"> </img>
+        <a class="button is-light" href="meshes/image_cond/barrel.jpg" download> Download Input </a>
+      </div>
+      <div class="column" style="padding: 0">
+        <iframe src="viewer.html?file=meshes/image_cond/barrel.ply&wire=true" scrolling="no" style="width: 100%; aspect-ratio: 1/1"> </iframe>
+        <a class="button is-light" href="meshes/image_cond/barrel.ply"> Download Output </a>
+      </div>
+      <div class="column" style="padding: 0">
+        <img src="meshes/image_cond/giraffe.jpg" style="width: 100%; aspect-ratio: 1/1"> </img>
+        <a class="button is-light" href="meshes/image_cond/giraffe.jpg" download> Download Input </a>
+      </div>
+      <div class="column" style="padding: 0">
+        <iframe src="viewer.html?file=meshes/image_cond/giraffe.ply&wire=true" scrolling="no" style="width: 100%; aspect-ratio: 1/1"> </iframe>
+        <a class="button is-light" href="meshes/image_cond/giraffe.ply"> Download Output </a>
+      </div>
+    </div>
+    <div class="columns is-multiline is-mobile">
+      <div class="column" style="padding: 0">
+        <img src="meshes/image_cond/warhammer.jpg" style="width: 100%; aspect-ratio: 1/1"> </img>
+        <a class="button is-light" href="meshes/image_cond/warhammer.jpg" download> Download Input </a>
+      </div>
+      <div class="column" style="padding: 0">
+        <iframe src="viewer.html?file=meshes/image_cond/warhammer.ply&wire=true" scrolling="no" style="width: 100%; aspect-ratio: 1/1"> </iframe>
+        <a class="button is-light" href="meshes/image_cond/warhammer.ply"> Download Output </a>
+      </div>
+      <div class="column" style="padding: 0">
+        <img src="meshes/image_cond/chesspiece.jpg" style="width: 100%; aspect-ratio: 1/1"> </img>
+        <a class="button is-light" href="meshes/image_cond/chesspiece.jpg" download> Download Input </a>
+      </div>
+      <div class="column" style="padding: 0">
+        <iframe src="viewer.html?file=meshes/image_cond/chesspiece.ply&wire=true" scrolling="no" style="width: 100%; aspect-ratio: 1/1"> </iframe>
+        <a class="button is-light" href="meshes/image_cond/chesspiece.ply"> Download Output </a>
+      </div>
+    </div>
+
+    <p class="title is-5 mt-5 has-text-centered"> More Results </p>
+    <div class="columns is-multiline is-mobile">
+      <div class="column"> <a class="button is-fullwidth is-info" target="_blank" href="gallery/image_cond_1.html"> 1 </a> </div>
+      <div class="column"> <a class="button is-fullwidth is-info" target="_blank" href="gallery/image_cond_2.html"> 2 </a> </div>
+      <div class="column"> <a class="button is-fullwidth is-info" target="_blank" href="gallery/image_cond_3.html"> 3 </a> </div>
+      <div class="column"> <a class="button is-fullwidth is-info" target="_blank" href="gallery/image_cond_4.html"> 4 </a> </div>
+    </div>
+   
+    <p class="title is-3 mt-5 has-text-centered"> Diversity of Generation </p>
+    
+    <p class="content is-size-6 has-text-centered"> Click the image to view meshes in 3D. </p>
+    <a href="gallery/diversity.html">
+      <img src="images/diversity.jpg" style="width: 100%; height: auto;">
+    </a>
+    
+  </div>
+
+
+  </section>
+</body>
+</html>
