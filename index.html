@@ -49,8 +49,8 @@
 
     <p class="title is-3 mt-5 has-text-centered"> Mesh Tokenizer </p>
     <p class="content is-size-6 has-text-left"> 
-      Our tokenizer use a modified <b>EdgeBreaker</b> algorithm to traverse and sequentialize a triangular mesh. 
-      Triangle color denotes different face types: <span style="color:red;"> L (visit left) </span>, <span style="color:green;"> R (visit right) </span>, <span style="color:blue;"> E (end of sequence) </span> 
+      Our tokenizer use a modified <a href="https://faculty.cc.gatech.edu/~jarek/papers/EdgeBreaker.pdf"><b>EdgeBreaker</b></a> algorithm to traverse and sequentialize a triangular mesh. 
+      The colors of triangles denote different face tokens: <span style="color:red;"> L (visit left) </span>, <span style="color:green;"> R (visit right) </span>, <span style="color:blue;"> E (end of sequence) </span> 
     </p>
     <div class="columns is-multiline is-mobile">
       <div class="column" style="padding: 0">
@@ -110,7 +110,7 @@
     </div> -->
 
     <p class="title is-3 mt-5 has-text-centered"> PointCloud Conditioned Mesh Generation </p>
-    <p class="content is-size-6 has-text-centered"> Drag with left mouse button to move the camera, right mouse button to move the object. </p>
+    <p class="content is-size-6 has-text-left"> Drag with left mouse button to move the camera, right mouse button to move the object. </p>
 
     <div class="columns is-multiline is-mobile">
       
@@ -164,6 +164,8 @@
     
     <p class="title is-3 mt-5 has-text-centered"> Image Conditioned Mesh Generation </p>
 
+    <p class="content is-size-6 has-text-left"> Drag with left mouse button to move the camera, right mouse button to move the object. </p>
+
     <div class="columns is-multiline is-mobile">
       <div class="column" style="padding: 0">
         <img src="meshes/image_cond/barrel.jpg" style="width: 100%; aspect-ratio: 1/1"> </img>
@@ -210,11 +212,14 @@
     </div>
    
     <p class="title is-3 mt-5 has-text-centered"> Diversity of Generation </p>
-    
-    <p class="content is-size-6 has-text-centered"> Click the image to view meshes in 3D. </p>
+
+    <p class="content is-size-6 has-text-left"> 
+      Given the <b>same</b> input condition (point cloud) but <b>different</b> random seeds, our model can generate diverse meshes:
+    </p>
     <a href="gallery/diversity.html">
       <img src="images/diversity.jpg" style="width: 100%; height: auto;">
     </a>
+    <p class="content is-size-6 has-text-centered"> Click the image to view meshes in 3D. </p>
     
   </div>
 
