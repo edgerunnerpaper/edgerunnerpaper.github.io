@@ -35,17 +35,17 @@
     <!-- abstract -->
     <p class="title is-3 mt-5 has-text-centered"> Abstract </p>
     <p class="content is-size-6 has-text-left">
-      We propose an Auto-regressive Encoder (ArE) model that compresses triangular meshes with variable number of face into a fixed-length latent space.
-      We start from introducing a novel mesh tokenizer to compress the mesh losslessly and reduce long-range dependency between tokens, which facilitates later training of the auto-regressive model.
-      Our method is able to generate meshes with number of faces up to 4000, and also supports coarse-grained controlling of the targeted number of face.
-      Further, we demonstrate that diffusion models can be trained on this latent space conditioned on other input modalities, such as single-view images to allow image-to-mesh generation.
-      Extensive experiments demonstrate the performance of our methods in terms of generation quality, diversity, and also generalization capability for point-cloud or single-view image conditioned mesh generation.
+      We propose an Auto-regressive Encoder (ArE) model that compresses triangular meshes with a variable number of faces into a fixed-length latent space. First, we introduce a novel mesh tokenizer that losslessly compresses 3D meshes into 1D token sequences, reducing long-range dependencies and facilitating the training of the auto-regressive model. Our method is capable of generating meshes with up to 4,000 faces and supports coarse-grained control over the target face count. Additionally, we show that diffusion models can be trained in this latent space, conditioned on other input modalities, such as single-view images, enabling image-to-mesh generation. Extensive experiments demonstrate the effectiveness of our method in terms of generation quality, diversity, and generalization to point-cloud or single-view image-conditioned mesh generation.
     </p>
 
-    <p class="title is-5 mt-2"> Pipeline</p>
+    <p class="title is-4 mt-2"> Pipeline </p>
     <img src="images/pipe.jpg" style="width: 100%; height: auto;">
     
     <!-- results -->
+    <p class="title is-4 mt-2"> Demo Video </p>
+    <div class="column" style="padding: 5px">
+      <video autoplay muted loop controls style="width: 100%;"> <source src="videos/video.mp4" type="video/mp4"> </video>
+    </div>
 
     <p class="title is-3 mt-5 has-text-centered"> Mesh Tokenizer </p>
     <p class="content is-size-6 has-text-left"> 
@@ -88,7 +88,7 @@
     </div>
     <div class="columns is-multiline is-mobile">
       <div class="column" style="padding: 0">
-        <video autoplay muted loop style="width: 100%; aspect-ratio: 1/1"> <source src="videos/dec/stoneface.mp4" type="video/mp4"> </video>
+        <video autoplay muted loop style="width: 100%; aspect-ratio: 1/1"> <source src="videos/dec/snail.mp4" type="video/mp4"> </video>
       </div>
       <div class="column" style="padding: 0">
         <video autoplay muted loop style="width: 100%; aspect-ratio: 1/1"> <source src="videos/dec/dog.mp4" type="video/mp4"> </video>
