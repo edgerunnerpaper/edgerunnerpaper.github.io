@@ -20,7 +20,7 @@
 
   <div class="container has-text-centered">
     <!-- paper title -->
-    <p class="title is-3"> EdgeRunner: Auto-regressive Encoder for Efficient Mesh Generation </p>
+    <p class="title is-3"> EdgeRunner: Auto-regressive Auto-encoder for Efficient Mesh Generation </p>
     
     <!-- authors -->
     <p class="title is-5 mt-2"> 
@@ -35,7 +35,7 @@
     <!-- abstract -->
     <p class="title is-3 mt-5 has-text-centered"> Abstract </p>
     <p class="content is-size-6 has-text-left">
-      We propose an Auto-regressive Encoder (ArE) model that compresses triangular meshes with a variable number of faces into a fixed-length latent space. First, we introduce a novel mesh tokenizer that losslessly compresses 3D meshes into 1D token sequences, reducing long-range dependencies and facilitating the training of the auto-regressive model. Our method is capable of generating meshes with up to 4,000 faces and supports coarse-grained control over the target face count. Additionally, we show that diffusion models can be trained in this latent space, conditioned on other input modalities, such as single-view images, enabling image-to-mesh generation. Extensive experiments demonstrate the effectiveness of our method in terms of generation quality, diversity, and generalization to point-cloud or single-view image-conditioned mesh generation.
+      We propose an Auto-regressive Auto-encoder (ArAE) model that compresses triangular meshes with a variable number of faces into a fixed-length latent space. First, we introduce a novel mesh tokenizer that losslessly compresses 3D meshes into 1D token sequences, reducing long-range dependencies and facilitating the training of the auto-regressive model. Our method is capable of generating meshes with up to 4,000 faces and supports coarse-grained control over the target face count. Additionally, we show that diffusion models can be trained in this latent space, conditioned on other input modalities, such as single-view images, enabling image-to-mesh generation. Extensive experiments demonstrate the effectiveness of our method in terms of generation quality, diversity, and generalization to point-cloud or single-view image-conditioned mesh generation.
     </p>
 
     <p class="title is-4 mt-2"> Pipeline </p>
